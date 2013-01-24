@@ -1,0 +1,23 @@
+<html>
+<head>
+</head>
+  <body onload="initializeJaws();">
+		<canvas id="drawingSpace" width="200" height="150">
+            Browser, y u no canvas?
+		</canvas>
+	    <script type="text/javascript" src="lib/jaws.js"></script>
+	    <script type="text/javascript" src="lib/class.js"></script>
+        <script type="text/javascript" src="base/input.js"></script>
+        <script type="text/javascript" src="base/framerate.js"></script>
+        <script type="text/javascript" src="input/jaws.js"></script>
+        <script type="text/javascript" src="framerate/jaws.js"></script>
+        <script type="text/javascript" src="render.js"></script>
+	    <script type="text/javascript" src="default.js"></script>
+  </body>
+  <script type="text/javascript">
+  	function initializeJaws(){
+        jaws.start(gameState, {fps: 60});
+        jaws.preventDefaultKeys( ["left","right","up","down"] );
+  	}
+  </script>
+</html>
