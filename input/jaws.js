@@ -31,22 +31,10 @@ var JawsKeyBrdInput = Input.extend({
     }
 });
 
-var NativeKeyBrdInput = Input.extend({
+var KeypressKeyBrdInput = Input.extend({
 
-
-    isPressed: function(keyCode) {
-    return this._pressed[keyCode];
-    },
     init: function(){
             this._super();
-            this._pressed = new Array()
-            window.addEventListener('keyup',this.onKeyup(event), false);
-            window.addEventListener('keydown', this.onKeydown(event), false);
-            this.SPACE = 32,
-            this.LEFT = 37,
-            this.UP = 38,
-            this.RIGHT = 39,
-            this.DOWN = 40
     },
     currentPos: function(){
         if(this.isPressed(this.LEFT))
@@ -62,10 +50,47 @@ var NativeKeyBrdInput = Input.extend({
     performPrimaryAction: function(){
         return this.isPressed(this.SPACE);
     },
-    onKeydown: function(event) {
-    this._pressed[event.keyCode] = true;
-    },
-    onKeyup: function(event) {
-    delete this._pressed[event.keyCode];
-    },
+    demo_2.combos = [
+    {
+        keys: "w",
+        on_keyup: function() {
+            return demo_2.move_piece("N");
+        }
+    }, {
+        keys: "a",
+        on_keyup: function() {
+            return demo_2.move_piece("W");
+        }
+    }, {
+        keys: "s",
+        on_keyup: function() {
+            return demo_2.move_piece("S");
+        }
+    }, {
+        keys: "d",
+        on_keyup: function() {
+            return demo_2.move_piece("E");
+        }
+    }, {
+        keys: "w a",
+        on_keyup: function() {
+            return demo_2.move_piece("NW");
+        }
+    }, {
+        keys: "w d",
+        on_keyup: function() {
+            return demo_2.move_piece("NE");
+        }
+    }, {
+        keys: "s a",
+        on_keyup: function() {
+            return demo_2.move_piece("SW");
+        }
+    }, {
+        keys: "s d",
+        on_keyup: function() {
+            return demo_2.move_piece("SE");
+        }
+    }
+];
 });
