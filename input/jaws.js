@@ -31,66 +31,69 @@ var JawsKeyBrdInput = Input.extend({
     }
 });
 
-var KeypressKeyBrdInput = Input.extend({
 
+var KeypressKeyBrdInput = Input.extend({
     init: function(){
-            this._super();
+        this._super();
+        this.keys = new Array();
+        this.registerCombos();
+    },
+    registerCombos: function(){
+        keypress.register_combo({
+            "keys"              : "left",
+            "on_keydown"        : function(e) { this.setKeyDown(e.keyCode); },
+            "on_keyup"          : function(e) { this.setKeyUp(e.keyCode); },
+            "this"              : this,
+            "prevent_repeat"    : false
+            });
+        keypress.register_combo({
+            "keys"              : "right",
+            "on_keydown"        : function(e) { this.setKeyDown(e.keyCode); },
+            "on_keyup"          : function(e) { this.setKeyUp(e.keyCode); },
+            "this"              : this,
+            "prevent_repeat"    : false
+            });
+        keypress.register_combo({
+            "keys"              : "up",
+            "on_keydown"        : function(e) { this.setKeyDown(e.keyCode); },
+            "on_keyup"          : function(e) { this.setKeyUp(e.keyCode); },
+            "this"              : this,
+            "prevent_repeat"    : false
+            });
+        keypress.register_combo({
+            "keys"              : "down",
+            "on_keydown"        : function(e) { this.setKeyDown(e.keyCode); },
+            "on_keyup"          : function(e) { this.setKeyUp(e.keyCode); },
+            "this"              : this,
+            "prevent_repeat"    : false
+            });
+        keypress.register_combo({
+            "keys"              : "space",
+            "on_keydown"        : function(e) { this.setKeyDown(e.keyCode); },
+            "on_keyup"          : function(e) { this.setKeyUp(e.keyCode); },
+            "this"              : this,
+            "prevent_repeat"    : true
+            });
+    },
+    setKeyDown: function(val){
+        this.keys[val] = true;
+    },
+    setKeyUp: function(val){
+        this.keys[val] = false;
+    },
+    determinePressedkeys: function()
+    {
+        if(this.keys[37]) this.pos.x--;//left
+        if(this.keys[38]) this.pos.y--;//up
+        if(this.keys[39]) this.pos.x++;//right
+        if(this.keys[40]) this.pos.y++;//down
     },
     currentPos: function(){
-        if(this.isPressed(this.LEFT))
-            this.pos.x--;
-        if(this.isPressed(this.RIGHT))
-            this.pos.x++;
-        if(this.isPressed(this.DOWN))
-            this.pos.y++;
-        if(this.isPressed(this.UP))
-            this.pos.y--;
+        this.determinePressedkeys();
         return this.pos;
     },
+
     performPrimaryAction: function(){
-        return this.isPressed(this.SPACE);
-    },
-    demo_2.combos = [
-    {
-        keys: "w",
-        on_keyup: function() {
-            return demo_2.move_piece("N");
-        }
-    }, {
-        keys: "a",
-        on_keyup: function() {
-            return demo_2.move_piece("W");
-        }
-    }, {
-        keys: "s",
-        on_keyup: function() {
-            return demo_2.move_piece("S");
-        }
-    }, {
-        keys: "d",
-        on_keyup: function() {
-            return demo_2.move_piece("E");
-        }
-    }, {
-        keys: "w a",
-        on_keyup: function() {
-            return demo_2.move_piece("NW");
-        }
-    }, {
-        keys: "w d",
-        on_keyup: function() {
-            return demo_2.move_piece("NE");
-        }
-    }, {
-        keys: "s a",
-        on_keyup: function() {
-            return demo_2.move_piece("SW");
-        }
-    }, {
-        keys: "s d",
-        on_keyup: function() {
-            return demo_2.move_piece("SE");
-        }
+        return this.keys[32];//space
     }
-];
 });

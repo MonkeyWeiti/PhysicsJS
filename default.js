@@ -14,7 +14,7 @@ function setup(){
 	canvas = document.getElementById('drawingSpace');
 	canvas.style.cursor = 'none';
     frameMonitor = new JawsFrameMonitor();
-    inp = new NativeKeyBrdInput();
+    inp = new KeypressKeyBrdInput();
     renderEngine = new RenderEngine();
 
 }
@@ -42,5 +42,6 @@ function draw(){
 		context.fillText(frameMonitor.totalGameTime(),20,60);
         context.fillText('x:'+ pos.x + 'y:' + pos.y,20,80);
         context.fillText(inp.performPrimaryAction(),20,100);
+        context.fillText(renderEngine.renderObjects.length,20,120);
     }
 }

@@ -2,7 +2,7 @@
 <head>
 </head>
   <body onload="initializeJaws();">
-		<canvas id="drawingSpace" width="200" height="150">
+		<canvas id="drawingSpace" width="1280" height="800">
             Browser, y u no canvas?
 		</canvas>
 	    <script type="text/javascript" src="lib/jaws.js"></script>
@@ -18,7 +18,7 @@
   <script type="text/javascript">
   	function initializeJaws(){
         jaws.start(gameState, {fps: 60});
-        jaws.preventDefaultKeys( ["left","right","up","down"] );
+        jaws.preventDefaultKeys( ["left","right","up","down", "space"] );
   	}
   </script>
 </html>
