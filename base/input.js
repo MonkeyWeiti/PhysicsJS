@@ -2,6 +2,7 @@ var Input = Class.extend({
     init: function(){
         this.pos = new Vector3(0,0,0);
         this.performprimaryaction = false;
+        this.performprimaryactionsingle = false;
     },
     currentPos: function(){
         return this.pos;

@@ -14,7 +14,7 @@ function setup(){
 	canvas = document.getElementById('drawingSpace');
 	canvas.style.cursor = 'none';
     frameMonitor = new JawsFrameMonitor();
-    inp = new KeypressKeyBrdInput();
+    inp = new JawsMouseInput();
     renderEngine = new RenderEngine();
 
 }
