@@ -31,12 +31,11 @@ function update(){
 function draw(){
 	if(canvas.getContext){
         var context = canvas.getContext('2d');
-        context.fillStyle = "rgb(0, 0, 0)";
-        context.fillRect(0, 0, canvas.width, canvas.height);
-        context.fillStyle = "rgb(255, 255, 255)";
+        context.clearRect(0,0, canvas.width, canvas.height);
 
         renderEngine.draw(context);
 
+        context.fillStyle = "#000";
 		context.fillText(frameMonitor.currentFps(),20,20);
 		context.fillText(frameMonitor.gameTime(),20,40);
 		context.fillText(frameMonitor.totalGameTime(),20,60);

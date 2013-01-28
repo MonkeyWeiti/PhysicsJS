@@ -11,14 +11,18 @@ var renderableObject = Class.extend({
 var circle = renderableObject.extend({
     init:function () {
         this.position = new Vector3(0, 0, 0);
+        this.texture = document.createElement("img");
+        this.texture.src = "img/invader.png"
     },
 
     draw:function (context) {
-        context.fillStyle = "rgb(255, 255, 255)";
+        context.drawImage(this.texture,this.position.x, this.position.y,50,50);
 
-        context.beginPath();
-        context.arc(this.position.x, this.position.y, 5, 0, 2 * Math.PI);
-        context.fill();
+        //context.fillStyle = "rgb(255, 255, 255)";
+
+        //context.beginPath();
+        //context.arc(this.position.x, this.position.y, 5, 0, 2 * Math.PI);
+        //context.fill();
     }
 });
 
@@ -31,7 +35,7 @@ function Vector3(x,y,z)
 
 var RenderEngine = Class.extend({
     init: function(){
-      this.renderObjects = new Array();
+      this.renderObjects = [];
     },
     add: function(item){
             this.renderObjects.push(item);
